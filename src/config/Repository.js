@@ -6,6 +6,11 @@ import { Sequelize } from "sequelize";
 import Customer from "../model/customer.js";
 import Category from "../model/category.js";
 import Option from "../model/option.js";
+import OrderDetails from "../model/orderDetails.js";
+import Order from "../model/order.js";
+import ProductCategory from "../model/productCategory.js";
+import ProductOptions from "../model/productOptions.js";
+import Product from "../model/product.js";
 
 export default  class Repository {
 
@@ -41,7 +46,11 @@ export default  class Repository {
               db.models.Customer = Customer(sequelize);
               db.models.Category = Category(sequelize);
               db.models.Option = Option(sequelize);
-              
+              db.models.OrderDetails = OrderDetails(sequelize);
+              db.models.Order = Order(sequelize);
+              db.models.ProductCategory = ProductCategory(sequelize);
+              db.models.ProductOptions = ProductOptions(sequelize);
+              db.models.Product = Product(sequelize);
               // ASSOCIATII!!! 
 
               // // o persoana poate aparea in mai multe inchirieri.

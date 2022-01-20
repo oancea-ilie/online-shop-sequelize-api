@@ -1,15 +1,22 @@
 import express from "express";
 import cors from "cors";
 import Repository from "../config/Repository.js";
-
 import CustomerService from "../services/CustomerService.js";
 import CustomerController from "./Controllers/CustomerController.js";
-
 import CategoryService from "../services/CategoryService.js";
 import CategoryController from "./Controllers/CategoryController.js";
-
 import OptionService from "../services/OptionService.js";
 import OptionController from "./Controllers/OptionController.js";
+import OrderDetailsService from "../services/OrderDetailsService.js";
+import OrderDetailsController from "./Controllers/OrderDetailsController.js";
+import OrderService from "../services/OrderService.js";
+import OrderController from "./Controllers/OrderController.js";
+import ProductCategoryService from "../services/ProductCategoryService.js";
+import ProductCategoryController from "./Controllers/ProductCategoryController.js";
+import ProductOptionsService from "../services/ProductOptionsService.js";
+import ProductOptionsController from "./Controllers/ProductOptionsController.js";
+import ProductService from "../services/ProductService.js";
+import ProductController from "./Controllers/ProductController.js";
 
 export default  class Server{
 
@@ -47,6 +54,22 @@ export default  class Server{
 
               let optionService =  new OptionService(db.models,db.sequelize);
               let optionController = new OptionController(optionService,this.app);
+
+              let orderDetailsService = new OrderDetailsService(db.models,db.sequelize);
+              let orderDetailsController = new OrderDetailsController(orderDetailsService, this.app);
+
+              let orderService = new OrderService(db.models,db.sequelize);
+              let orderController = new OrderController(orderService, this.app);
+
+              let productCategoryService = new ProductCategoryService(db.models,db.sequelize);
+              let productCategoryController = new ProductCategoryController(productCategoryService, this.app);
+
+              let productOptionsService = new ProductOptionsService(db.models,db.sequelize);
+              let productOptionsController = new ProductOptionsController(productOptionsService, this.app);
+
+              let productService = new ProductService(db.models,db.sequelize);
+              let productController = new ProductController(productService, this.app);
+
         });
 
 
