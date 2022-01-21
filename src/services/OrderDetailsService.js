@@ -35,7 +35,7 @@ export default class OrderDetailsService{
     // REIMPLEMENTARE CU FOREGIN KEY
     create= async(user)=>{
 
-        if(user.price == null || user.quantity == null){
+        if(user.price == null || user.quantity == null || user.order_id == null || user.product_id == null){
             throw new Error("Propietati invalide!");
         }
         if(!user.price){
@@ -43,6 +43,12 @@ export default class OrderDetailsService{
         }
         else if(!user.quantity){
             throw new Error('Campul Quantity este gol!');
+        }
+        else if(!user.order_id){
+            throw new Error('Campul order_id(fk) este gol!');
+        }
+        else if(!user.product_id){
+            throw new Error('Campul product_id(fk) este gol!');
         }
         else{
             await this.orderDetails.create(user);
@@ -65,7 +71,7 @@ export default class OrderDetailsService{
     update= async(id, user)=>{
         let obj = await this.getById(id);
         
-        if(obj.price == '' && obj.quantity==''){
+        if(obj.price == '' && obj.quantity=='' && obj.order_id =='' && obj.product_id==''){
             throw new Error("Nu exista propietati pentru update!");
         }
         if(obj){
@@ -75,6 +81,12 @@ export default class OrderDetailsService{
             }
             if(user.quantity){
                 obj.quantity = user.quantity;
+            }
+            if(user.order_id){
+                obj.order_id = user.order_id;
+            }
+            if(user.product_id){
+                obj.product_id = user.product_id;
             }
 
             await obj.save();

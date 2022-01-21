@@ -56,7 +56,7 @@ export default (sequelize)=>{
             allowNull: false,
             validate: {
                 notNull:{
-                    msg:'Image Address can not be null!'
+                    msg:'Image Address can not be null!' 
                 },
                 notEmpty:{
                     msg:'Image Address can not be empty!'

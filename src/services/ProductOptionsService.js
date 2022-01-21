@@ -33,20 +33,21 @@ export default class ProductOptionsService{
 
     }
 
-    // REIMPLEMENTARE
+    create= async(user)=>{
+        if(user.option_id == null || user.product_id == null){
+            throw new Error("Propietati invalide!");
+        }
+        if(!user.option_id){
+            throw new Error('Campul option_id(fk) este gol!');
+        }
+        if(!user.product_id){
+            throw new Error('Campul product_id(fk) este gol!');
+        }
+        else{
+            await this.productOptions.create(user);
+        }
 
-    // create= async(user)=>{
-    //     if(user.option_name == null){
-    //         throw new Error("Propietati invalide!");
-    //     }
-    //     if(!user.option_name){
-    //         throw new Error('Campul Nume este gol!');
-    //     }
-    //     else{
-    //         await this.option.create(user);
-    //     }
-
-    // }
+    }
 
     delete=async(id)=>{
         let rez = await this.getById(id);
@@ -58,26 +59,27 @@ export default class ProductOptionsService{
         }
     }
 
-     // REIMPLEMENTARE
-     
-    // update= async(id, user)=>{
-    //     let obj = await this.getById(id);
+    update= async(id, user)=>{
+        let obj = await this.getById(id);
         
-    //     if(obj.option_name == ''){
-    //         throw new Error("Nu exista propietati pentru update!");
-    //     }
-    //     if(obj){
+        if(obj.option_id == ''&& obj.product_id == ''){
+            throw new Error("Nu exista propietati pentru update!");
+        }
+        if(obj){
             
-    //         if(user.option_name){
-    //             obj.option_name = user.option_name;
-    //         }
+            if(user.option_id){
+                obj.option_id = user.option_id;
+            }
+            if(user.product_id){
+                obj.product_id = user.product_id;
+            }
 
-    //         await obj.save();
+            await obj.save();
 
-    //     }else{
-    //         throw new Error("Nu s-a gasit Option cu acest ID pentru a putea face Update!");
-    //     }
-    // }
+        }else{
+            throw new Error("Nu s-a gasit Option cu acest ID pentru a putea face Update!");
+        }
+    }
 
 
 
